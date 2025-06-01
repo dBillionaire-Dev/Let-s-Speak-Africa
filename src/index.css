@@ -1,0 +1,74 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;  /* Black */
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+
+    --primary: 45 84% 62%;  /* Gold */
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 142 60% 42%;  /* Green */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 45 84% 62%;  /* Gold */
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 45 84% 62%;  /* Gold */
+
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-poppins font-bold;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl;
+  }
+  
+  .section-padding {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+
+  .btn-primary {
+    @apply bg-lsa-gold hover:bg-lsa-gold/90 text-black font-medium py-3 px-6 rounded-md transition-all;
+  }
+  
+  .btn-secondary {
+    @apply bg-lsa-green hover:bg-lsa-green/90 text-white font-medium py-3 px-6 rounded-md transition-all;
+  }
+
+  .btn-outline {
+    @apply border-2 border-lsa-gold text-black hover:bg-lsa-gold/10 font-medium py-3 px-6 rounded-md transition-all;
+  }
+}
