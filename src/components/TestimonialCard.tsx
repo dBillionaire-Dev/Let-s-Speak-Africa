@@ -13,9 +13,9 @@ const TestimonialCard = ({ quote, name, title, image }: TestimonialCardProps) =>
       <p className="mb-6 italic text-gray-700">{quote}</p>
       <div className="flex items-center">
         <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
-          <img 
-            src={image || "https://via.placeholder.com/100"} 
-            alt={name} 
+          <img
+            src={image}
+            alt={name}
             className="w-full h-full object-cover"
           />
         </div>

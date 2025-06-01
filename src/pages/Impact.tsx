@@ -109,36 +109,31 @@ const Impact = () => {
             subtitle="Hear from the people who have been part of our journey"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <TestimonialCard
-              quote="Being part of the Environmental Storytelling Club changed how I see my role in the community. I found my voice and learned that stories can create real change."
-              name="Chioma A."
-              title="Club Member, Lagos"
+              quote="Working with the Executive team in 2025 has been impactful, allowing me to connect with diverse audiences across Africa. A standout moment was the Let's Speak Women Open tournament, where I helped empower women through public speaking, a truly inspiring and unforgettable experience."
+              name="Advocate Ashfaque A."
+              title="Intercontinental leader, Let's Speak Africa"
+              image="akbar.jpeg"
+            />
+            <TestimonialCard
+              quote="Joining the Executive team for the 2025 project year has been both exciting and enlightening, offering me a fresh perspective on activism. It’s been a truly rewarding experience, and I look forward to a future where our world becomes a place for everyone."
+              name="Emmanuel A."
+              title="Graphics Head, Let's Speak Africa"
+              image="emmanuel.jpeg"
+            />
+            <TestimonialCard
+              quote="Being part of Let's speak Africa led me to ignite the creativity that i never knew i had it in me. It provided me with an opportunity to tackle and identify the strength i never knew  existed. 
+              Day by day, it fuels me to light up and bring out the best in me."
+              name="Fida N."
+              title="Content Creator, Let's Speak Africa"
+              image="fida.jpeg"
             />
             <TestimonialCard
               quote="The public speaking skills I gained through Let's Speak Africa helped me become a confident advocate for gender equity in my school and community."
-              name="Sarah M."
-              title="Voices for Her Participant"
-            />
-            <TestimonialCard
-              quote="Let's Speak Africa's approach of combining storytelling with environmental action creates a powerful platform for youth to engage with important issues."
-              name="Dr. James K."
-              title="Community Partner"
-            />
-            <TestimonialCard
-              quote="After participating in the 7 Days of Environmental Action, I started a recycling initiative in my neighborhood that has now spread to three nearby communities."
-              name="Michael O."
-              title="Program Participant, Abuja"
-            />
-            <TestimonialCard
-              quote="The mentorship I received through the Voices for Her program gave me the confidence to run for student government and advocate for policy changes at my university."
-              name="Amina T."
-              title="Youth Advocate"
-            />
-            <TestimonialCard
-              quote="Let's Speak Africa is creating the next generation of environmentally conscious leaders. Their impact will be felt for years to come."
-              name="Lisa R."
-              title="Environmental Organization Director"
+              name="Odida A"
+              title="Deputy Public Relations Officer, Let's Speak Africa"
+              image="odida.jpeg"
             />
           </div>
         </div>
@@ -152,12 +147,11 @@ const Impact = () => {
             subtitle="Organizations that support and collaborate with us"
           />
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 items-center">
-            {/* Partner logos would go here - using placeholders */}
-            <div className="bg-white p-6 rounded-lg shadow-sm flex items-center justify-center h-24">
-              <div className="text-xl font-bold text-gray-400">Partner 1</div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-5 items-center">
+            <div className="rounded-full shadow-sm flex items-center justify-center">
+              <div><img className="rounded-full h-40 w-40" src="/iyc.jpeg" /></div>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm flex items-center justify-center h-24">
+            <div className="bg-black p-2 rounded-lg shadow-sm flex items-center justify-center h-24">
               <div className="text-xl font-bold text-gray-400">Partner 2</div>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm flex items-center justify-center h-24">
@@ -171,12 +165,6 @@ const Impact = () => {
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm flex items-center justify-center h-24">
               <div className="text-xl font-bold text-gray-400">Partner 6</div>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm flex items-center justify-center h-24">
-              <div className="text-xl font-bold text-gray-400">Partner 7</div>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm flex items-center justify-center h-24">
-              <div className="text-xl font-bold text-gray-400">Partner 8</div>
             </div>
           </div>
 

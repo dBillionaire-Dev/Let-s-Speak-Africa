@@ -160,7 +160,7 @@ The key to success is consistency and authenticity. Your stories should be based
     date: "January 30, 2023",
     readTime: "7 min read",
     category: "Resources",
-    image: "https://images.unsplash.com/photo-1562592589-36f72e9cf5df?w=800",
+    image: "/blog-storytelling.jpeg",
     likes: 89,
     published: true
   },
@@ -197,10 +197,10 @@ const Blog = () => {
     // Load user-created posts from localStorage
     const savedPosts = localStorage.getItem('blogPosts');
     const userPosts = savedPosts ? JSON.parse(savedPosts) : [];
-    
+
     // Combine user posts with default posts
     const allPosts = [...userPosts, ...blogPosts];
-    
+
     const savedComments = localStorage.getItem('blogComments');
     const savedLikes = localStorage.getItem('blogLikes');
     const savedPostLikes = localStorage.getItem('blogPostLikes');
@@ -258,10 +258,10 @@ const Blog = () => {
   const handleAddComment = (newComment: Omit<Comment, 'id' | 'date'>) => {
     const comment: Comment = {
       id: Date.now(), // Use timestamp as ID for uniqueness
-      date: new Date().toLocaleDateString('en-US', { 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
+      date: new Date().toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
       }),
       ...newComment
     };
@@ -272,7 +272,7 @@ const Blog = () => {
     setLikedPosts(prev => {
       const newSet = new Set(prev);
       let increment = 0;
-      
+
       if (newSet.has(postId)) {
         newSet.delete(postId);
         increment = -1;
@@ -282,9 +282,9 @@ const Blog = () => {
       }
 
       // Update the like count for the specific post
-      setBlogPostsWithLikes(prevPosts => 
-        prevPosts.map(post => 
-          post.id === postId 
+      setBlogPostsWithLikes(prevPosts =>
+        prevPosts.map(post =>
+          post.id === postId
             ? { ...post, likes: post.likes + increment }
             : post
         )
@@ -324,16 +324,16 @@ const Blog = () => {
 
       <section className="section-padding">
         <div className="container-custom">
-          <SectionTitle 
-            title="Latest Articles" 
-            subtitle="Explore our latest stories, insights, and resources" 
+          <SectionTitle
+            title="Latest Articles"
+            subtitle="Explore our latest stories, insights, and resources"
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogPostsWithLikes.filter(post => post.published).map((post) => (
-              <BlogPostCard 
-                key={post.id} 
-                post={post} 
+              <BlogPostCard
+                key={post.id}
+                post={post}
                 onReadMore={() => handleReadMore(post)}
               />
             ))}
@@ -344,11 +344,11 @@ const Blog = () => {
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <div className="max-w-2xl mx-auto text-center">
-            <SectionTitle 
-              title="Subscribe to Our Newsletter" 
-              subtitle="Get the latest updates delivered directly to your inbox" 
+            <SectionTitle
+              title="Subscribe to Our Newsletter"
+              subtitle="Get the latest updates delivered directly to your inbox"
             />
-            
+
             <form className="mt-8">
               <div className="flex flex-col sm:flex-row gap-4">
                 <input
@@ -382,8 +382,8 @@ const BlogPostCard = ({ post, onReadMore }: BlogPostCardProps) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
       <div className="h-48 overflow-hidden">
-        <img 
-          src={post.image} 
+        <img
+          src={post.image}
           alt={post.title}
           className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
         />
@@ -399,7 +399,7 @@ const BlogPostCard = ({ post, onReadMore }: BlogPostCardProps) => {
           <span className="text-sm text-gray-500">By {post.author.name}</span>
           <span className="text-sm text-gray-500">{post.date}</span>
         </div>
-        <button 
+        <button
           onClick={onReadMore}
           className="w-full mt-4 py-2 border-2 border-lsa-gold hover:bg-lsa-gold/10 rounded-md font-medium transition-colors"
         >
