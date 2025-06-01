@@ -74,7 +74,7 @@ const Programs = () => {
           <div className="flex flex-col md:flex-row gap-12 items-center">
             <div className="md:w-1/2">
               <img
-                src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800"
+                src="/storytelling.jpeg"
                 alt="Environmental Storytelling Club"
                 className="rounded-lg shadow-lg w-full h-[400px]"
               />
@@ -188,7 +188,7 @@ const Programs = () => {
           <div className="flex flex-col md:flex-row-reverse gap-12 items-center">
             <div className="md:w-1/2">
               <img
-                src="https://media.istockphoto.com/id/1435661969/photo/close-up-of-children-holding-a-planet-at-the-beach.webp?a=1&b=1&s=612x612&w=0&k=20&c=DzMpS97JzlsbjNlMLwam2x6w_0wLZDA6PiP4DLyt7J8="
+                src="14-days.jpeg"
                 alt="14 Days of Environmental Activism"
                 className="rounded-lg shadow-lg w-full"
               />
@@ -249,7 +249,7 @@ const Programs = () => {
                   <li>Partnered events with local communities</li>
                 </ul>
               </div>
-              <Link to="/get-involved#volunteer" className="btn-secondary">Join Voices for Her</Link>
+              <Link to="/get-involved#volunteer" className="btn-secondary">Participate in the Next Campaign</Link>
             </div>
           </div>
         </div>
@@ -264,7 +264,7 @@ const Programs = () => {
           <div className="flex flex-col md:flex-row-reverse gap-12 items-center">
             <div className="md:w-1/2">
               <img
-                src="https://media.istockphoto.com/id/1479288148/photo/community-service-volunteering-and-black-man-plant-trees-in-park-garden-and-nature-for.webp?a=1&b=1&s=612x612&w=0&k=20&c=Xzzcd5YKb4L2lX4-OvCMuy3Wyd6_Cyc4fcETSOcgFqg="
+                src="500-trees.jpeg"
                 alt="500 Tree Planting Project – Enugu, Nigeria"
                 className="rounded-lg shadow-lg w-full"
               />
@@ -302,7 +302,7 @@ const Programs = () => {
           <div className="flex flex-col md:flex-row gap-12 items-center">
             <div className="md:w-1/2">
               <img
-                src="https://media.istockphoto.com/id/1324947925/photo/tree-tunnel.webp?a=1&b=1&s=612x612&w=0&k=20&c=6P2V0uq5SEed9IiqUBJQmtT8EoF6aww1WGGXOAydq64="
+                src="calabar.jpg"
                 alt="Urban Beautification Project – Calabar, Nigeria"
                 className="rounded-lg shadow-lg w-full"
               />
