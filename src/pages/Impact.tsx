@@ -147,15 +147,16 @@ const Impact = () => {
             subtitle="Organizations that support and collaborate with us"
           />
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-5 items-center">
+          {/* <div className="grid grid-cols-2 md:grid-cols-3 gap-1 items-center w-100 mx-auto"> */}
+          <div className="grid gap-2 items-center">
             <div className="rounded-full shadow-sm flex items-center justify-center">
               <div><img className="rounded-full h-40 w-40" src="/iyc.jpeg" /></div>
             </div>
-            <div className="bg-black p-2 rounded-lg shadow-sm flex items-center justify-center h-24">
+            {/* <div className="rounded-full shadow-sm flex items-center justify-center">
+              <div><img className="rounded-full h-40 w-40" src="/Nex.jpeg" /></div>
+            </div> */}
+            {/* <div className="bg-black p-2 rounded-lg shadow-sm flex items-center justify-center h-24">
               <div className="texvt-xl font-bold text-gray-400">Partner 2</div>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-sm flex items-center justify-center h-24">
-              <div className="text-xl font-bold text-gray-400">Partner 3</div>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm flex items-center justify-center h-24">
               <div className="text-xl font-bold text-gray-400">Partner 4</div>
@@ -165,7 +166,7 @@ const Impact = () => {
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm flex items-center justify-center h-24">
               <div className="text-xl font-bold text-gray-400">Partner 6</div>
-            </div>
+            </div> */}
           </div>
 
           <div className="text-center mt-12">
