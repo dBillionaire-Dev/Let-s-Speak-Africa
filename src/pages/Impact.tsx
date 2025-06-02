@@ -152,7 +152,7 @@ const Impact = () => {
               <div><img className="rounded-full h-40 w-40" src="/iyc.jpeg" /></div>
             </div>
             <div className="bg-black p-2 rounded-lg shadow-sm flex items-center justify-center h-24">
-              <div className="text-xl font-bold text-gray-400">Partner 2</div>
+              <div className="texvt-xl font-bold text-gray-400">Partner 2</div>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm flex items-center justify-center h-24">
               <div className="text-xl font-bold text-gray-400">Partner 3</div>

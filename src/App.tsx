@@ -15,6 +15,7 @@ import GetInvolved from "./pages/GetInvolved";
 import Blog from "./pages/Blog";
 import BlogAdmin from "./pages/BlogAdmin";
 import NotFound from "./pages/NotFound";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
