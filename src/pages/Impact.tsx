@@ -79,30 +79,31 @@ const Impact = () => {
             </div>
 
             <div className="bg-white p-8 rounded-lg shadow-md">
-              <h3 className="text-2xl font-bold mb-4">Environmental Policy Change</h3>
+              <h3 className="text-2xl font-bold mb-4">Voices That Move Mountains: 14 Days of Environmental Activism</h3>
               <p className="text-lg text-gray-700 mb-4">
-                Youth advocates from our 7 Days of Environmental Action campaign presented compelling stories and data to the city council about the impact of plastic pollution.
+                Through our Planet Pulse campaign, Let’s Speak Africa activated a movement across 40+ African countries. In 14 days, youth from Kenya to Nigeria, Ghana to South Africa engaged in creative tasks: from storytelling and spoken word to tree planting and recycling challenges.
               </p>
               <p className="text-lg text-gray-700 mb-4">
-                Their presentations, backed by community support mobilized through storytelling, led to the adoption of a new policy limiting single-use plastics in the city.
+                The highlight was a continental video collage, each participant representing their country with powerful environmental declarations. The campaign amplified African voices, showing that climate advocacy doesn’t require wealth, only the will to speak and act.
               </p>
               <p className="text-lg text-gray-700">
-                This policy is estimated to reduce plastic waste by 30% annually, demonstrating the power of youth advocacy in creating systemic change.
+                Planet Pulse proved that when voices unite across borders, the climate conversation becomes impossible to ignore.
               </p>
             </div>
 
             <div className="bg-white p-8 rounded-lg shadow-md">
-              <h3 className="text-2xl font-bold mb-4">Youth Leadership Development</h3>
+              <h3 className="text-2xl font-bold mb-4">Women Leading the Change: Let’s Speak Women's Open</h3>
               <p className="text-lg text-gray-700 mb-4">
-                Through our leadership and public speaking training, a group of 15 young people from underserved communities developed the confidence and skills to advocate for their needs.
+                Through our “Voices of Women” campaign, Let’s Speak Africa empowered young women across Nigeria and beyond to lead climate action through storytelling, clean-up projects, and local advocacy.
               </p>
               <p className="text-lg text-gray-700 mb-4">
-                These youth have gone on to lead community projects, speak at national conferences, and mentor other young people in their communities.
+                From spoken word to mentorship meetups, women found strength in unity. A standout moment came from Enugu, where one participant’s activism sparked talks with local authorities.
               </p>
               <p className="text-lg text-gray-700">
-                Five of them have been appointed to local youth councils, where they now influence policy decisions affecting young people.
+                This project reaffirmed what we already believe: when African women rise, communities move. Let’s Speak Africa is committed to amplifying women’s leadership and storytelling as a driving force in Africa’s environmental transformation.
               </p>
             </div>
+
           </div>
         </div>
       </section>
