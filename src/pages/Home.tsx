@@ -57,7 +57,7 @@ const Home = () => {
             <ProgramCard
               title="Environmental Storytelling Clubs"
               description="Youth-led clubs that use storytelling to raise awareness about environmental issues and inspire action at the local level."
-              image="https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800"
+              image="/storytelling.jpeg"
               link="/programs#storytelling-clubs"
             />
             <ProgramCard
