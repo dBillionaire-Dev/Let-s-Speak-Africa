@@ -47,28 +47,34 @@ const Impact = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="bg-white p-8 rounded-lg shadow-md">
-              <h3 className="text-2xl font-bold mb-4">Community Clean-up Initiative</h3>
+              <h3 className="text-2xl font-bold mb-4">Greening Our Streets: The Calabar Urban Beautification Project</h3>
               <p className="text-lg text-gray-700 mb-4">
-                In Lagos, our Environmental Storytelling Club mobilized over 200 community members to participate in a major clean-up operation, removing 2 tons of plastic waste from local waterways.
+                In June 2025, Let’s Speak Africa led a transformative project to beautify Ekorinim in Calabar through flower planting. What began as a modest vision bloomed into a vibrant display of collective action for the environment.
               </p>
               <p className="text-lg text-gray-700 mb-4">
-                The club members used their storytelling skills to create compelling narratives about the importance of clean water, which were shared through community radio and social media.
+                Despite limited resources, our team mobilized volunteers, raised community support, and executed a seamless project that added color and consciousness to the streets.
+              </p>
+              <p className="text-lg text-gray-700 mb-4">
+                This initiative didn’t just plant flowers, it planted awareness. Residents, especially young people, were inspired to take environmental action in their own neighborhoods.
               </p>
               <p className="text-lg text-gray-700">
-                As a result, the local government committed to implementing a regular waste collection schedule and installing waste bins throughout the community.
+                The project is a model of how local solutions and creative activism can promote climate responsibility across African cities.
               </p>
             </div>
 
             <div className="bg-white p-8 rounded-lg shadow-md">
-              <h3 className="text-2xl font-bold mb-4">Girls' Education Advocacy</h3>
+              <h3 className="text-2xl font-bold mb-4">Telling Africa’s Climate Stories – The Environmental Storytelling Club Launch</h3>
               <p className="text-lg text-gray-700 mb-4">
-                Participants in our Voices for Her program identified a gap in girls' access to education in their community and launched a "Back to School" campaign.
+                In Kaduna, Nigeria, Let’s Speak Africa launched its first Environmental Storytelling Club, a youth-led initiative blending advocacy with spoken word, drama, and poetry.
               </p>
               <p className="text-lg text-gray-700 mb-4">
-                The campaign included storytelling events, community dialogues, and meetings with local leaders, highlighting the barriers to girls' education and proposing solutions.
+                This club empowers students to express climate realities through art, making issues like deforestation, flooding, and air pollution personal and relatable.
+              </p>
+              <p className="text-lg text-gray-700 mb-4">
+                The launch event featured original performances from secondary school students, and it sparked interest from educators, artists, and NGOs who want to replicate the model.
               </p>
               <p className="text-lg text-gray-700">
-                Their efforts resulted in a local scholarship fund that has supported 25 girls to return to school and complete their education.
+                By nurturing storytelling as a tool for climate justice, Let’s Speak Africa is inspiring a generation of storytellers who don’t just tell stories, they change them.
               </p>
             </div>
 
