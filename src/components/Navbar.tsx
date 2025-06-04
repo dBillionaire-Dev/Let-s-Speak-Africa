@@ -18,7 +18,7 @@ const Navbar = () => {
       <div className="container-custom flex justify-between items-center py-4">
         <Link to="/" className="flex items-center">
           <span className="text-2xl font-poppins font-bold">
-            <img src={Logo} alt="Logo" className="h-8 mr-1 inline" /><span className="text-lsa-gold">Africa</span>
+            <img src={Logo} alt="Logo" className="h-14 mr-1 inline" />
           </span>
         </Link>
 

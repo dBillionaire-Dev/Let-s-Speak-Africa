@@ -12,7 +12,7 @@ const About = () => {
       <Hero
         title="About Let's Speak Africa"
         subtitle="Learn more about our mission, vision, and the people behind our organization"
-        backgroundImage="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=1200"
+        backgroundImage="/about-us.png"
         overlayOpacity="opacity-60"
       />
 

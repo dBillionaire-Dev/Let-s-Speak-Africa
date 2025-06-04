@@ -23,7 +23,7 @@ const Home = () => {
           <div className="flex flex-col md:flex-row gap-12 items-center">
             <div className="md:w-1/2">
               <img
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800"
+                src="/about.jpeg"
                 alt="Youth activism"
                 className="rounded-lg shadow-lg w-full"
               />
@@ -61,13 +61,13 @@ const Home = () => {
               link="/programs#storytelling-clubs"
             />
             <ProgramCard
-              title="7 Days of Environmental Action"
+              title="7 Days of Environmental Activism"
               description="A week-long campaign of coordinated activities across multiple communities to drive tangible environmental impact."
               image="https://images.unsplash.com/photo-1466721591366-2d5fba72006d?w=800"
               link="/programs#seven-days"
             />
             <ProgramCard
-              title="Voices for Her"
+              title="Let's Speak Women's Open"
               description="Empowering young women to advocate for gender equity through public speaking, art, and community organizing."
               image="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800"
               link="/programs#voices"

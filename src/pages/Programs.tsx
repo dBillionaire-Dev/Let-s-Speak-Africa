@@ -106,7 +106,7 @@ const Programs = () => {
       <section id="seven-days" className="section-padding">
         <div className="container-custom">
           <SectionTitle
-            title="7 Days of Environmental Action"
+            title="7 Days of Environmental Activism"
           />
 
           <div className="flex flex-col md:flex-row-reverse gap-12 items-center">
@@ -144,7 +144,7 @@ const Programs = () => {
       <section id="voices" className="section-padding bg-gray-50">
         <div className="container-custom">
           <SectionTitle
-            title="Voices for Her"
+            title="Let's Speak Women's Open"
           />
 
           <div className="flex flex-col md:flex-row gap-12 items-center">
@@ -226,8 +226,7 @@ const Programs = () => {
           <div className="flex flex-col md:flex-row gap-12 items-center">
             <div className="md:w-1/2">
               <img
-                src="https://images.unsplash.com/photo-1698199069683-d81abd54ffe4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Q2FyJTIwZnJlZSUyMGRheXxlbnwwfHwwfHx8MA%3D%3D"
-                alt="Car-Free Day Campaign"
+                src="/car-free-day.jpeg"
                 className="rounded-lg shadow-lg w-full h-[400px]"
               />
             </div>
