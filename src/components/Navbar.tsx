@@ -15,10 +15,10 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="container-custom flex justify-between items-center py-4">
+      <div className="container-custom flex justify-between items-center py-1 lg:py-2">
         <Link to="/" className="flex items-center">
           <span className="text-2xl font-poppins font-bold">
-            <img src={Logo} alt="Logo" className="h-8 lg:h-14 mr-1 inline" />
+            <img src={Logo} alt="Logo" className="h-14 lg:h-18 mr-1 inline" />
           </span>
         </Link>
 
