@@ -14,7 +14,7 @@ import ArticleManager from '../components/ArticleManager';
 const BlogAdmin = () => {
   const { user } = useAuth();
   const { posts, createPost, updatePost, deletePost, loading } = useBlogPosts();
-  
+
   const [isEditing, setIsEditing] = useState(false);
   const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
   const [previewPost, setPreviewPost] = useState<BlogPost | null>(null);
@@ -48,7 +48,7 @@ const BlogAdmin = () => {
         content: formData.content,
         category: formData.category,
         image: formData.image,
-        readTime: formData.readTime || '5 min read',
+        readTime: formData.readTime || '',
         published: formData.published,
         author: {
           name: user.user_metadata?.full_name || user.email || 'Anonymous',
@@ -148,7 +148,7 @@ const BlogAdmin = () => {
             <CardTitle>Access Denied</CardTitle>
           </CardHeader>
           <CardContent>
-            <p>You need to be logged in to access the blog admin panel.</p>
+            <p>You need to be authenticated to access admin panel.</p>
           </CardContent>
         </Card>
       </div>
@@ -161,8 +161,8 @@ const BlogAdmin = () => {
         post={previewPost}
         onBack={() => setPreviewPost(null)}
         comments={[]}
-        onAddComment={() => {}}
-        onLike={() => {}}
+        onAddComment={() => { }}
+        onLike={() => { }}
         isLiked={false}
         isPreview={true}
         backButtonText="Back to Editor"
