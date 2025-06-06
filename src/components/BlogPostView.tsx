@@ -17,12 +17,12 @@ interface BlogPostViewProps {
   backButtonText?: string;
 }
 
-const BlogPostView = ({
-  post,
-  onBack,
-  comments,
-  onAddComment,
-  onLike,
+const BlogPostView = ({ 
+  post, 
+  onBack, 
+  comments, 
+  onAddComment, 
+  onLike, 
   isLiked,
   isPreview = false,
   backButtonText = 'Back to Blog'
@@ -62,7 +62,7 @@ const BlogPostView = ({
       {/* Header */}
       <div className="bg-gray-50 border-b">
         <div className="container-custom py-6">
-          <Button
+          <Button 
             onClick={onBack}
             variant="outline"
             className="mb-4 flex items-center gap-2"
@@ -70,16 +70,16 @@ const BlogPostView = ({
             <ArrowLeft size={20} />
             {backButtonText}
           </Button>
-
+          
           {post.category && (
             <span className="inline-block bg-lsa-green text-white px-3 py-1 rounded-full text-sm font-medium mb-4">
               {post.category}
             </span>
           )}
-
+          
           <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
           <p className="text-xl text-gray-600 mb-6">{post.excerpt}</p>
-
+          
           <div className="flex items-center gap-6 text-gray-500">
             <div className="flex items-center gap-2">
               <Calendar size={16} />
@@ -102,8 +102,8 @@ const BlogPostView = ({
       {/* Cover Image */}
       {post.image && (
         <div className="w-full h-64 md:h-96 overflow-hidden">
-          <img
-            src={post.image}
+          <img 
+            src={post.image} 
             alt={post.title}
             className="w-full h-full object-cover"
           />
@@ -116,8 +116,8 @@ const BlogPostView = ({
           {/* Author Info */}
           <div className="flex items-center gap-4 mb-8 p-6 bg-gray-50 rounded-lg">
             {post.author.image && (
-              <img
-                src={post.author.image}
+              <img 
+                src={post.author.image} 
                 alt={post.author.name}
                 className="w-16 h-16 rounded-full object-cover"
               />
@@ -134,7 +134,7 @@ const BlogPostView = ({
           </div>
 
           {/* Article Content */}
-          <div
+          <div 
             className="prose prose-lg max-w-none mb-12"
             dangerouslySetInnerHTML={{ __html: formatContent(post.content) }}
           />
@@ -164,11 +164,11 @@ const BlogPostView = ({
               {/* Comments Section */}
               <div id="comments" className="space-y-6">
                 <h3 className="text-2xl font-bold">Comments ({comments.length})</h3>
-
+                
                 {/* Add Comment Form */}
                 <form onSubmit={handleSubmitComment} className="space-y-4 p-6 bg-gray-50 rounded-lg">
                   <h4 className="font-semibold">Leave a Comment</h4>
-
+                  
                   <div className="flex items-center gap-4">
                     <label className="flex items-center gap-2">
                       <input

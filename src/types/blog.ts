@@ -1,14 +1,16 @@
 
+export interface Author {
+  name: string;
+  image?: string;
+  social?: string;
+}
+
 export interface BlogPost {
-  id: number;
+  id: string; // Changed from number to string for UUID
   title: string;
   excerpt: string;
   content: string;
-  author: {
-    name: string;
-    image?: string;
-    social?: string;
-  };
+  author: Author;
   date: string;
   readTime: string;
   category: string;
@@ -18,8 +20,8 @@ export interface BlogPost {
 }
 
 export interface Comment {
-  id: number;
-  postId: number;
+  id: string; // Changed from number to string for UUID
+  postId: string; // Changed from number to string for UUID
   author: string;
   content: string;
   date: string;

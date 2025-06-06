@@ -1,163 +1,138 @@
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BlogPost } from '../types/blog';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
-import { Edit, Trash2, Eye, Calendar, User } from 'lucide-react';
 
 interface ArticleManagerProps {
-    onEditArticle: (post: BlogPost) => void;
-    onPreviewArticle: (post: BlogPost) => void;
+  posts: BlogPost[];
+  loading: boolean;
+  onEdit: (post: BlogPost) => void;
+  onDelete: (id: string) => void;
 }
 
-const ArticleManager = ({ onEditArticle, onPreviewArticle }: ArticleManagerProps) => {
-    const [articles, setArticles] = useState<BlogPost[]>([]);
-
-    useEffect(() => {
-        const savedPosts = JSON.parse(localStorage.getItem('blogPosts') || '[]');
-        setArticles(savedPosts);
-    }, []);
-
-    const handleDeleteArticle = (id: number) => {
-        if (window.confirm('Are you sure you want to delete this article? This action cannot be undone.')) {
-            const updatedArticles = articles.filter(article => article.id !== id);
-            setArticles(updatedArticles);
-            localStorage.setItem('blogPosts', JSON.stringify(updatedArticles));
-        }
-    };
-
-    const refreshArticles = () => {
-        const savedPosts = JSON.parse(localStorage.getItem('blogPosts') || '[]');
-        setArticles(savedPosts);
-    };
-
-    // Refresh articles when component mounts or when localStorage changes
-    useEffect(() => {
-        const handleStorageChange = () => {
-            refreshArticles();
-        };
-
-        window.addEventListener('storage', handleStorageChange);
-        return () => window.removeEventListener('storage', handleStorageChange);
-    }, []);
-
-    // Separate published and draft articles
-    const publishedArticles = articles.filter(article => article.published);
-    const draftArticles = articles.filter(article => !article.published);
-
-    const ArticleTable = ({ articles, title }: { articles: BlogPost[], title: string }) => (
-        <Card className="mb-6">
-            <CardHeader>
-                <CardTitle className="flex items-center justify-between">
-                    {title} ({articles.length})
-                    <Button onClick={refreshArticles} variant="outline" size="sm">
-                        Refresh
-                    </Button>
-                </CardTitle>
-            </CardHeader>
-            <CardContent>
-                {articles.length === 0 ? (
-                    <div className="text-center py-8 text-gray-500">
-                        <p>No {title.toLowerCase()} yet.</p>
-                    </div>
-                ) : (
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead>Title</TableHead>
-                                <TableHead>Category</TableHead>
-                                <TableHead>Author</TableHead>
-                                <TableHead>Date</TableHead>
-                                <TableHead>Likes</TableHead>
-                                <TableHead>Actions</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {articles.map((article) => (
-                                <TableRow key={article.id}>
-                                    <TableCell className="font-medium">
-                                        <div>
-                                            <p className="font-semibold">{article.title}</p>
-                                            <p className="text-sm text-gray-500 truncate max-w-xs">
-                                                {article.excerpt}
-                                            </p>
-                                        </div>
-                                    </TableCell>
-                                    <TableCell>
-                                        <span className="inline-block bg-lsa-green text-white px-2 py-1 rounded-full text-xs">
-                                            {article.category}
-                                        </span>
-                                    </TableCell>
-                                    <TableCell>
-                                        <div className="flex items-center gap-2">
-                                            {article.author.image && (
-                                                <img
-                                                    src={article.author.image}
-                                                    alt={article.author.name}
-                                                    className="w-6 h-6 rounded-full object-cover"
-                                                />
-                                            )}
-                                            <span className="text-sm">{article.author.name}</span>
-                                        </div>
-                                    </TableCell>
-                                    <TableCell>
-                                        <div className="flex items-center gap-1 text-sm text-gray-500">
-                                            <Calendar size={14} />
-                                            <span>{article.date}</span>
-                                        </div>
-                                    </TableCell>
-                                    <TableCell>
-                                        <div className="flex items-center gap-1 text-sm">
-                                            <span>{article.likes}</span>
-                                        </div>
-                                    </TableCell>
-                                    <TableCell>
-                                        <div className="flex items-center gap-2">
-                                            <Button
-                                                onClick={() => onPreviewArticle(article)}
-                                                variant="outline"
-                                                size="sm"
-                                                className="flex items-center gap-1"
-                                            >
-                                                <Eye size={16} />
-                                                Preview
-                                            </Button>
-                                            <Button
-                                                onClick={() => onEditArticle(article)}
-                                                variant="outline"
-                                                size="sm"
-                                                className="flex items-center gap-1"
-                                            >
-                                                <Edit size={16} />
-                                                Edit
-                                            </Button>
-                                            <Button
-                                                onClick={() => handleDeleteArticle(article.id)}
-                                                variant="outline"
-                                                size="sm"
-                                                className="flex items-center gap-1 text-red-600 hover:text-red-700"
-                                            >
-                                                <Trash2 size={16} />
-                                                Delete
-                                            </Button>
-                                        </div>
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                )}
-            </CardContent>
-        </Card>
-    );
-
+const ArticleManager = ({ posts, loading, onEdit, onDelete }: ArticleManagerProps) => {
+  if (loading) {
     return (
-        <div className="space-y-6">
-            <ArticleTable articles={draftArticles} title="Draft Articles" />
-            <ArticleTable articles={publishedArticles} title="Published Articles" />
-        </div>
+      <div className="flex justify-center items-center py-12">
+        <div className="text-gray-500">Loading articles...</div>
+      </div>
     );
+  }
+
+  if (posts.length === 0) {
+    return (
+      <Card>
+        <CardContent className="text-center py-12">
+          <p className="text-gray-500">No articles found. Create your first post!</p>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  const publishedPosts = posts.filter(post => post.published);
+  const draftPosts = posts.filter(post => !post.published);
+
+  return (
+    <div className="space-y-8">
+      {/* Published Posts */}
+      <div>
+        <h2 className="text-2xl font-bold mb-4">Published Articles ({publishedPosts.length})</h2>
+        <div className="grid gap-4">
+          {publishedPosts.map((post) => (
+            <Card key={post.id}>
+              <CardContent className="p-6">
+                <div className="flex justify-between items-start">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-4 mb-2">
+                      <h3 className="text-xl font-semibold">{post.title}</h3>
+                      <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">
+                        Published
+                      </span>
+                    </div>
+                    <p className="text-gray-600 mb-2">{post.excerpt}</p>
+                    <div className="flex items-center gap-4 text-sm text-gray-500">
+                      <span>Category: {post.category}</span>
+                      <span>Date: {post.date}</span>
+                      <span>Likes: {post.likes}</span>
+                    </div>
+                  </div>
+                  <div className="flex gap-2 ml-4">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => onEdit(post)}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      variant="destructive"
+                      size="sm"
+                      onClick={() => onDelete(post.id)}
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+
+      {/* Draft Posts */}
+      <div>
+        <h2 className="text-2xl font-bold mb-4">Draft Articles ({draftPosts.length})</h2>
+        <div className="grid gap-4">
+          {draftPosts.length === 0 ? (
+            <Card>
+              <CardContent className="text-center py-8">
+                <p className="text-gray-500">No drafts found.</p>
+              </CardContent>
+            </Card>
+          ) : (
+            draftPosts.map((post) => (
+              <Card key={post.id}>
+                <CardContent className="p-6">
+                  <div className="flex justify-between items-start">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-4 mb-2">
+                        <h3 className="text-xl font-semibold">{post.title}</h3>
+                        <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium">
+                          Draft
+                        </span>
+                      </div>
+                      <p className="text-gray-600 mb-2">{post.excerpt}</p>
+                      <div className="flex items-center gap-4 text-sm text-gray-500">
+                        <span>Category: {post.category}</span>
+                        <span>Created: {post.date}</span>
+                      </div>
+                    </div>
+                    <div className="flex gap-2 ml-4">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => onEdit(post)}
+                      >
+                        Edit
+                      </Button>
+                      <Button
+                        variant="destructive"
+                        size="sm"
+                        onClick={() => onDelete(post.id)}
+                      >
+                        Delete
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))
+          )}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default ArticleManager;
