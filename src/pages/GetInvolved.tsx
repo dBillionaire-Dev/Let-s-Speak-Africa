@@ -14,6 +14,41 @@ const GetInvolved = () => {
     message: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [notification, setNotification] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+  const [showNotification, setShowNotification] = useState(false);
+
+  const showPopup = (message: string, type: 'success' | 'error') => {
+    setNotification({ message, type });
+    setTimeout(() => {
+      setNotification(null);
+    }, 3000);
+  };
+
+  const handleNewsletterSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    fetch('https://formspree.io/f/mgvyodag', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        Accept: 'application/json',
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          showPopup('Thank you for subscribing. We will keep you updated.', 'success');
+          form.reset();
+        } else {
+          showPopup('Subscription failed. Please try again.', 'error');
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        showPopup('Subscription failed. Please try again.', 'error');
+      });
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -26,9 +61,9 @@ const GetInvolved = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
-    // Here you would typically send the data to a server
+
     setIsSubmitted(true);
-    // Reset form after submission
+
     setFormData({
       name: "",
       email: "",
@@ -37,10 +72,9 @@ const GetInvolved = () => {
       message: "",
     });
 
-    // Reset success message after 5 seconds
     setTimeout(() => {
       setIsSubmitted(false);
-    }, 5000);
+    }, 3000);
   };
 
   return (
@@ -267,21 +301,27 @@ const GetInvolved = () => {
                 </div>
 
                 <div className="mt-8">
-                  <h4 className="font-bold text-lg mb-2">Newsletter</h4>
+                  <h4 className="font-bold text-lg mb-2">Subscribe to Our Newsletter</h4>
                   <p className="text-gray-600 mb-4">
-                    Subscribe to our newsletter to receive updates about our work and opportunities to get involved.
+                    Get the latest updates delivered directly to your inbox. Stay informed about our programs, events, and opportunities to get involved.
                   </p>
-                  <form className="flex flex-col sm:flex-row">
+                  <form
+                    className="flex flex-col sm:flex-row"
+                    onSubmit={handleNewsletterSubmit}
+                  >
                     <input
                       type="email"
+                      name=""
                       placeholder="Your email address"
                       className="w-full px-4 py-3 border border-gray-300 rounded-md sm:rounded-r-none focus:outline-none focus:ring-2 focus:ring-lsa-gold"
                       required
                     />
-                    <button type="submit" className="w-full sm:w-auto mt-2 sm:mt-0 bg-lsa-gold hover:bg-lsa-gold/90 text-black font-medium py-3 px-6 rounded-md sm:rounded-l-none">
+                    <button type="submit"
+                      className="w-full sm:w-auto mt-2 sm:mt-0 bg-lsa-gold hover:bg-lsa-gold/90 text-black font-medium py-3 px-6 rounded-md sm:rounded-l-none">
                       Subscribe
                     </button>
                   </form>
+                  <p className="text-gray-500 text-sm mt-3">We respect your privacy. Unsubscribe at any time.</p>
                 </div>
               </div>
             </div>
@@ -342,6 +382,16 @@ const GetInvolved = () => {
           </div>
         </div>
       </section>
+      {notification && (
+        <div className={`fixed inset-0 flex items-center justify-center z-50 pointer-events-none`}>
+          <div
+            className={`px-6 py-4 rounded-md shadow-lg text-white text-center max-w-xs w-full transition-opacity duration-300
+              ${notification.type === 'success' ? 'bg-green-600' : 'bg-red-600'}`}
+          >
+            {notification.message}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
