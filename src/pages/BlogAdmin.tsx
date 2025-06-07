@@ -10,13 +10,15 @@ import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import BlogPostView from '../components/BlogPostView';
 import ArticleManager from '../components/ArticleManager';
-import ImageUpload from '../components/ImageUpload';
+import ImageUpload from '@/components/ImageUpload';
 import { calculateReadTime } from '../utils/readTimeCalculator';
+import { useToast } from '../components/ToastProvider';
+
 
 const BlogAdmin = () => {
+  const { showToast } = useToast();
   const { user } = useAuth();
   const { posts, createPost, updatePost, deletePost, loading } = useBlogPosts();
-
   const [isEditing, setIsEditing] = useState(false);
   const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
   const [previewPost, setPreviewPost] = useState<BlogPost | null>(null);
@@ -96,13 +98,13 @@ const BlogAdmin = () => {
 
       // Show appropriate success message
       if (formData.published) {
-        alert('Post published successfully!');
+        showToast('Post published successfully!');
       } else {
-        alert('Draft saved successfully!');
+        showToast('Draft saved successfully!');
       }
     } catch (error) {
       console.error('Error saving post:', error);
-      alert('Error saving post. Please try again.');
+      showToast('Error saving post. Please try again.');
     }
   };
 
@@ -125,10 +127,10 @@ const BlogAdmin = () => {
     if (window.confirm('Are you sure you want to delete this post?')) {
       try {
         await deletePost(postId);
-        alert('Post deleted successfully!');
+        showToast('Post deleted successfully!');
       } catch (error) {
         console.error('Error deleting post:', error);
-        alert('Error deleting post. Please try again.');
+        showToast('Error deleting post. Please try again.');
       }
     }
   };
