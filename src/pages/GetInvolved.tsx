@@ -5,17 +5,7 @@ import SectionTitle from "../components/SectionTitle";
 import { Facebook, Instagram, Linkedin } from "lucide-react";
 
 const GetInvolved = () => {
-  // State for form handling
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    interest: "join",
-    message: "",
-  });
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [notification, setNotification] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
-  const [showNotification, setShowNotification] = useState(false);
 
   const showPopup = (message: string, type: 'success' | 'error') => {
     setNotification({ message, type });
@@ -50,31 +40,31 @@ const GetInvolved = () => {
       });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
     console.log("Form submitted:", formData);
 
-    setIsSubmitted(true);
-
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      interest: "join",
-      message: "",
-    });
-
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 3000);
+    fetch('https://formspree.io/f/mrbkejrb', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        Accept: 'application/json',
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          showPopup("Thank you for reaching out! We'll get back to you soon.", 'success');
+          form.reset();
+        } else {
+          showPopup('Submission failed. Please try again.', 'error');
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        showPopup('Submission failed. Please try again.', 'error');
+      });
   };
 
   return (
@@ -172,12 +162,9 @@ const GetInvolved = () => {
 
           <div className="flex flex-col lg:flex-row gap-12">
             <div className="lg:w-1/2">
-              <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-md">
-                {isSubmitted && (
-                  <div className="mb-6 p-4 bg-green-50 border border-green-200 text-green-700 rounded-lg">
-                    Thank you for reaching out! We'll get back to you soon.
-                  </div>
-                )}
+              <form onSubmit={handleSubmit}
+                className="bg-white p-8 rounded-lg shadow-md"
+              >
 
                 <div className="mb-6">
                   <label htmlFor="name" className="block text-gray-700 font-medium mb-2">Full Name</label>
@@ -185,8 +172,6 @@ const GetInvolved = () => {
                     type="text"
                     id="name"
                     name="name"
-                    value={formData.name}
-                    onChange={handleChange}
                     className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-lsa-gold"
                     required
                   />
@@ -198,8 +183,6 @@ const GetInvolved = () => {
                     type="email"
                     id="email"
                     name="email"
-                    value={formData.email}
-                    onChange={handleChange}
                     className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-lsa-gold"
                     required
                   />
@@ -211,8 +194,6 @@ const GetInvolved = () => {
                     type="tel"
                     id="phone"
                     name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
                     className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-lsa-gold"
                   />
                 </div>
@@ -222,8 +203,6 @@ const GetInvolved = () => {
                   <select
                     id="interest"
                     name="interest"
-                    value={formData.interest}
-                    onChange={handleChange}
                     className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-lsa-gold"
                   >
                     <option value="join">Joining a Club</option>
@@ -239,8 +218,6 @@ const GetInvolved = () => {
                   <textarea
                     id="message"
                     name="message"
-                    value={formData.message}
-                    onChange={handleChange}
                     rows={5}
                     className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-lsa-gold"
                     required
@@ -311,7 +288,7 @@ const GetInvolved = () => {
                   >
                     <input
                       type="email"
-                      name=""
+                      name="email"
                       placeholder="Your email address"
                       className="w-full px-4 py-3 border border-gray-300 rounded-md sm:rounded-r-none focus:outline-none focus:ring-2 focus:ring-lsa-gold"
                       required
