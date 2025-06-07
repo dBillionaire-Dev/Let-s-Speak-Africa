@@ -10,6 +10,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import BlogPostView from '../components/BlogPostView';
 import ArticleManager from '../components/ArticleManager';
+import ImageUpload from '../components/ImageUpload';
+import { calculateReadTime } from '../utils/readTimeCalculator';
 
 const BlogAdmin = () => {
   const { user } = useAuth();
@@ -25,7 +27,7 @@ const BlogAdmin = () => {
     content: '',
     category: '',
     image: '',
-    readTime: '',
+    imageUrl: '',
     published: false
   });
 
@@ -37,18 +39,45 @@ const BlogAdmin = () => {
     }));
   };
 
+  const handleImageUpload = (imageData: string) => {
+    setFormData(prev => ({
+      ...prev,
+      image: imageData,
+      imageUrl: '' // Clear URL when image is uploaded
+    }));
+  };
+
+  const handleImageUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      imageUrl: e.target.value,
+      image: '' // Clear uploaded image when URL is entered
+    }));
+  };
+
+  const clearImage = () => {
+    setFormData(prev => ({
+      ...prev,
+      image: '',
+      imageUrl: ''
+    }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) return;
 
     try {
+      const readTime = calculateReadTime(formData.content);
+      const finalImage = formData.image || formData.imageUrl;
+
       const postData: Omit<BlogPost, 'id' | 'date' | 'likes'> = {
         title: formData.title,
         excerpt: formData.excerpt,
         content: formData.content,
         category: formData.category,
-        image: formData.image,
-        readTime: formData.readTime || '',
+        image: finalImage,
+        readTime: readTime,
         published: formData.published,
         author: {
           name: user.user_metadata?.full_name || user.email || 'Anonymous',
@@ -64,7 +93,13 @@ const BlogAdmin = () => {
       }
 
       resetForm();
-      alert(isEditing ? 'Post updated successfully!' : 'Post created successfully!');
+
+      // Show appropriate success message
+      if (formData.published) {
+        alert('Post published successfully!');
+      } else {
+        alert('Draft saved successfully!');
+      }
     } catch (error) {
       console.error('Error saving post:', error);
       alert('Error saving post. Please try again.');
@@ -79,11 +114,11 @@ const BlogAdmin = () => {
       excerpt: post.excerpt,
       content: post.content,
       category: post.category,
-      image: post.image,
-      readTime: post.readTime,
+      image: post.image.startsWith('data:') ? post.image : '',
+      imageUrl: !post.image.startsWith('data:') ? post.image : '',
       published: post.published
     });
-    setActiveTab('create'); // Switch to create tab when editing
+    setActiveTab('create');
   };
 
   const handleDelete = async (postId: string) => {
@@ -101,14 +136,17 @@ const BlogAdmin = () => {
   const handlePreview = () => {
     if (!user) return;
 
+    const readTime = calculateReadTime(formData.content);
+    const finalImage = formData.image || formData.imageUrl;
+
     const previewData: BlogPost = {
       id: 'preview',
       title: formData.title,
       excerpt: formData.excerpt,
       content: formData.content,
       category: formData.category,
-      image: formData.image,
-      readTime: formData.readTime || '5 min read',
+      image: finalImage,
+      readTime: readTime,
       published: formData.published,
       date: new Date().toLocaleDateString('en-US', {
         year: 'numeric',
@@ -133,7 +171,7 @@ const BlogAdmin = () => {
       content: '',
       category: '',
       image: '',
-      readTime: '',
+      imageUrl: '',
       published: false
     });
     setIsEditing(false);
@@ -148,7 +186,7 @@ const BlogAdmin = () => {
             <CardTitle>Access Denied</CardTitle>
           </CardHeader>
           <CardContent>
-            <p>You need to be authenticated to access admin panel.</p>
+            <p>You need to be authenticated to access the admin panel.</p>
           </CardContent>
         </Card>
       </div>
@@ -253,25 +291,29 @@ const BlogAdmin = () => {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Image URL</label>
-                      <Input
-                        name="image"
-                        value={formData.image}
-                        onChange={handleInputChange}
-                        placeholder="https://example.com/image.jpg"
-                      />
-                    </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Cover Image</label>
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-sm text-gray-600 mb-2">Upload Image</label>
+                        <ImageUpload
+                          onImageSelect={handleImageUpload}
+                          currentImage={formData.image}
+                          onClear={clearImage}
+                        />
+                      </div>
 
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Read Time</label>
-                      <Input
-                        name="readTime"
-                        value={formData.readTime}
-                        onChange={handleInputChange}
-                        placeholder="5 min read"
-                      />
+                      <div className="text-center text-gray-500 text-sm">OR</div>
+
+                      <div>
+                        <label className="block text-sm text-gray-600 mb-2">Image URL</label>
+                        <Input
+                          value={formData.imageUrl}
+                          onChange={handleImageUrlChange}
+                          placeholder="https://example.com/image.jpg"
+                          disabled={!!formData.image}
+                        />
+                      </div>
                     </div>
                   </div>
 
@@ -284,10 +326,13 @@ const BlogAdmin = () => {
                       className="rounded"
                     />
                     <label className="text-sm font-medium">Publish immediately</label>
+                    <span className="text-xs text-gray-500 ml-2">
+                      (Check to publish post, leave unchecked to save as draft)
+                    </span>
                   </div>
 
                   <div className="flex gap-4">
-                    <Button type="submit" className="bg-blue-600 hover:bg-blue-700">
+                    <Button type="submit" className="bg-lsa-green hover:bg-lsa-green/90 text-white">
                       {isEditing ? 'Update Post' : 'Create Post'}
                     </Button>
                     <Button type="button" onClick={handlePreview} variant="outline">

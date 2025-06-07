@@ -42,7 +42,7 @@ export const useBlogLikes = (postId: string) => {
         .single();
 
       if (error) throw error;
-      
+
       setLikesCount(data?.likes || 0);
     } catch (err) {
       console.error('Error fetching likes count:', err);
@@ -56,9 +56,8 @@ export const useBlogLikes = (postId: string) => {
     try {
       if (!user) {
         // For anonymous users, just increment the count directly
-        const currentCount = likesCount;
-        const newCount = currentCount + 1;
-        
+        const newCount = likesCount + 1;
+
         const { error } = await supabase
           .from('blog_posts')
           .update({ likes: newCount })
@@ -68,7 +67,7 @@ export const useBlogLikes = (postId: string) => {
           console.error('Error updating likes for anonymous user:', error);
           throw error;
         }
-        
+
         setLikesCount(newCount);
         console.log('Anonymous like added successfully');
       } else {
@@ -83,6 +82,7 @@ export const useBlogLikes = (postId: string) => {
 
           if (error) throw error;
           setIsLiked(false);
+          setLikesCount(prev => Math.max(0, prev - 1));
         } else {
           // Like
           const { error } = await supabase
@@ -94,9 +94,8 @@ export const useBlogLikes = (postId: string) => {
 
           if (error) throw error;
           setIsLiked(true);
+          setLikesCount(prev => prev + 1);
         }
-        
-        await fetchLikesCount(); // Refresh likes count
       }
     } catch (err) {
       console.error('Error toggling like:', err);
