@@ -19,7 +19,7 @@ const GetInvolved = () => {
     const form = event.currentTarget;
     const formData = new FormData(form);
 
-    fetch('https://formspree.io/f/mgvyodag', {
+    fetch('https://formspree.io/f/xvgrkvde', {
       method: 'POST',
       body: formData,
       headers: {
@@ -46,7 +46,7 @@ const GetInvolved = () => {
     const formData = new FormData(form);
     console.log("Form submitted:", formData);
 
-    fetch('https://formspree.io/f/mrbkejrb', {
+    fetch('https://formspree.io/f/xwpblwye', {
       method: 'POST',
       body: formData,
       headers: {
