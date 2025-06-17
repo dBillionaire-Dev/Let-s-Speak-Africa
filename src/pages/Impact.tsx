@@ -145,7 +145,7 @@ const Impact = () => {
             />
             <TestimonialCard
               quote="Serving as Public Relations Manager at Let’s Speak Africa has been a transformative experience, allowing me to amplify the voices of young people across the continent. Drawing on my background in social work and passion for civic engagement, I’m proud to contribute to initiatives that enable Africa’s youth to drive conversations and solve problems within their own communities. Let’s Speak Africa isn’t just an organization, it’s a movement, shaping the future by investing in the leaders of tomorrow."
-              name="Name S."
+              name="Isheunesu M."
               title="Public Relations Manager, Let's Speak Africa"
               image="testimonial.jpeg"
             />

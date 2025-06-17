@@ -5,13 +5,11 @@ import BlogPostView from "../components/BlogPostView";
 import { BlogPost, Comment } from "../types/blog";
 import { useBlogPosts } from "../hooks/useBlogPosts";
 import { useBlogComments } from "../hooks/useBlogComments";
-import { useBlogLikes } from "../hooks/useBlogLikes";
 
 const Blog = () => {
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const { posts, loading } = useBlogPosts();
   const { comments, addComment } = useBlogComments(selectedPost?.id || '');
-  const { isLiked, toggleLike } = useBlogLikes(selectedPost?.id || '');
   const handleReadMore = (post: BlogPost) => {
     setSelectedPost(post);
   };
@@ -30,10 +28,6 @@ const Blog = () => {
     }
   };
 
-  const handleLike = async () => {
-    await toggleLike();
-  };
-
   if (selectedPost) {
     return (
       <BlogPostView
@@ -41,8 +35,6 @@ const Blog = () => {
         onBack={handleBack}
         comments={comments}
         onAddComment={handleAddComment}
-        onLike={handleLike}
-        isLiked={isLiked}
       />
     );
   }
