@@ -117,6 +117,7 @@ const Impact = () => {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
             <TestimonialCard
               quote="Working with the Executive team in 2025 has been impactful, allowing me to connect with diverse audiences across Africa. A standout moment was the Let's Speak Women Open tournament, where I helped empower women through public speaking, a truly inspiring and unforgettable experience."
               name="Advocate Ashfaque A."
@@ -141,6 +142,12 @@ const Impact = () => {
               name="Odida A"
               title="Deputy Public Relations Officer, Let's Speak Africa"
               image="odida.jpeg"
+            />
+            <TestimonialCard
+              quote="Serving as Public Relations Manager at Let’s Speak Africa has been a transformative experience, allowing me to amplify the voices of young people across the continent. Drawing on my background in social work and passion for civic engagement, I’m proud to contribute to initiatives that enable Africa’s youth to drive conversations and solve problems within their own communities. Let’s Speak Africa isn’t just an organization, it’s a movement, shaping the future by investing in the leaders of tomorrow."
+              name="Name S."
+              title="Public Relations Manager, Let's Speak Africa"
+              image="testimonial.jpeg"
             />
           </div>
         </div>
